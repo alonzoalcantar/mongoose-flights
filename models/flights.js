@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 
 
 const flightsSchema = new Schema({
-    airline: String,
-    airport: String,
-    flightNo: Number,
+    airline: {type: String, enum: ['American','Southwest','United']},
+    airport: {type: String, default:"DEN", enum: ['AUS','DFW','DEN','LAX','SAN']},
+    flightNo:{type: Number, default: "", min: 10, max:9999}, 
     departs: Date
+},{
+    timestamp: true,
 });
 
 
