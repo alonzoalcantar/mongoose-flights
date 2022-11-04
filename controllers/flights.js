@@ -1,6 +1,7 @@
 //   controllers/flights.js
 
-const Flight = require('../models/flights')
+const Flight = require('../models/flights');
+const Ticket = require('../models/tickets');
 
 module.exports = {
     new: newFlight,
@@ -23,7 +24,7 @@ function create (req, res) {
     flight.save(function(err){
         if(err) return res.redirect('/flights/new');
         console.log(flight);
-        res.redirect('/flights');
+        res.redirect(`/flights/${flight._id}`);
     });
 }
 
@@ -39,7 +40,15 @@ function index (req, res) {
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id, function(err, flight) {
-      res.render('flights/show', { title: 'Flight Detail', flight });
-    });
-  }
+    Flight.findById(req.params.id)
+    .populate('tickets').exec(function(err, ticket) {
+        Ticket.find(
+            {_id: {$nin: flight.tickets}},
+            function(err, tickets) {
+              console.log(tickets);
+              res.render('flights/show', {
+                title: 'Flight Detail', flight, tickets
+              });
+            });
+        });
+    }

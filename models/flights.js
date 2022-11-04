@@ -16,7 +16,7 @@ const flightsSchema = new Schema({
     flightNo:{type: Number, default: "", min: 10, max:9999}, 
     departs: Date,
     destinations: [destinationSchema],
-    tickets: String
+    tickets: [{type: Schema.Types.ObjectId, ref: 'Tickets'}]
 },{
     timestamp: true,
 });

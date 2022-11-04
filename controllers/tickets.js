@@ -3,7 +3,8 @@ const Flight = require('../models/flights');
 
 module.exports = {
     new: newTicket,
-    create
+    create,
+    addTicket
 };
 
 
@@ -22,3 +23,13 @@ function newTicket (req, res) {
         });
     })
 }
+
+
+function addTicket(req, res) {
+    Flight.findById(req.params.id, function(err, flight) {
+      flight.tickets.push(req.body.ticketId);
+      flight.save(function(err) {
+        res.redirect(`/flights/${flight._id}`);
+      });
+    });
+  }

@@ -19,6 +19,26 @@
         <div><%= flight.departs %></div>
       </section>
 
+
+      <div>Tickets:</div>
+      <ul>
+        <%- flights.tickets.map(p => 
+          `<li>${p.seat} <small>${p.born.toLocaleDateString()}</small></li>`
+        ).join('') %>
+      </ul>
+      <!-- end cast list -->
+    </section>
+        
+    <!-- add to cast form below this comment -->
+    <form id="add-per-to-ticket" action="???" method="POST">
+      <select name="ticketId">
+        <%- tickets.map(p => 
+          `<option value="${p._id}">${p.seat}</option>`
+        ).join('') %>
+      </select>
+      <button type="submit">Add Ticket</button>
+    </form>
+
       <br><br>
       
       <h2>Destinations</h2>
@@ -68,6 +88,7 @@
 
   <p>
     <a href = "/">Home Page</a>
+    <a href = "/flights">Flight List</a>
 </p>
 
 
