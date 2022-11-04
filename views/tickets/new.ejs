@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>Before adding, please ensure that the Seat/Flight is not in the following list:</div>
+<section id="badge-container">
+  <% tickets.forEach(function(t) { %>
+    <article class="badge"><%= t.seat %></article>
+  <% }) %>
+</section>
+
+<form id="add-ticket-form" action="/tickets" method="POST">
+  <label>Seat:</label>
+  <input type="text" name="seat">
+  <label>Price:</label>
+  <select name="price">
+    <option value="50">50</option>
+    <option value="70">70</option>
+    <option value="110">110</option>
+    <option value="150">150</option>
+    <option value="200">200</option>
+</select>
+  <input type="submit" value="Create Ticket">
+</form>
+
+<p>
+    <a href = "/">Home Page</a>
+</p>
+
+
+
+</body>
+</html>
