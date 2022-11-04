@@ -35,33 +35,36 @@
     <option value="SAN">SAN</option>
   </select>
   <label>Arrival Date:
-  <input type="date" name="arrival date">
+  <input type="date" name="departs">
   </label>
   <input type="submit" value="add destination">
 </form>
 
-<% if (flight.destination) { %>
+<p>Destinations = <%= flight.destinations.length %> </p>
+
+<% if (flight.destinations.length) { %>
     <table>
       <thead>
         <tr>
-          <th>Arrival Date</th>
-          <th>Destination</th>
+          <th>Date</th>
+          <th>Destinations</th>
           <th>Airport</th>
         </tr>
       </thead>
       <tbody>
-        <% flight.destination.forEach(function(f) { %>
+        <% flight.destinations.forEach(function(f) { %>
           <tr>
             <td><%= f.departs %></td>
-            <td><%= f.flightNo %></td>
+            <td><%= f.content %></td>
             <td><%= f.airport %></td>
           </tr>
         <% }); %>
       </tbody>
     </table>
   <% } else { %>
-    <h5>No Destinations for this Flight</h5>
+    <h5>No Destinations Yet</h5>
   <% } %>
-    
+
+
 </body>
 </html>
