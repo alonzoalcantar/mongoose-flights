@@ -9,5 +9,6 @@ router.post('/', flightsCtrl.create);
 //GET all movies 
 router.get('/', flightsCtrl.index);
 
+router.get('/:id', flightsCtrl.show);
 
 module.exports = router;
